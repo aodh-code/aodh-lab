@@ -2,7 +2,7 @@
 
 Aodh Lab is designed as a layered personal AI system.
 
-The project separates the agent system from the runtime, model provider, tools, memory, and private local user data.
+The project separates the agent system from the runtime, model provider, tools, memory, privacy layer, and private local user data.
 
 This makes the project easier to understand, easier to modify, and easier for other people to clone for their own use.
 
@@ -27,6 +27,9 @@ Memory
 Guardrails
   = what the agent is not allowed to do
 
+Privacy layer
+  = optional masking, redaction, or local-only routing
+
 Human approval
   = the user stays in control
 ```
@@ -38,9 +41,10 @@ The system layer contains the public rules and templates that define how Aodh La
 This includes:
 
 - Agent charter
+- Memory rules
+- Privacy rules
 - Safety rules
 - Tool permissions
-- Memory rules
 
 These files live in:
 
@@ -78,7 +82,7 @@ local/memory/profile.md
 
 The local layer contains the private instance of Aodh Lab.
 
-This includes personal memory, selected model configuration, private notes, and local project context.
+This includes personal memory, selected model configuration, selected privacy mode, private notes, and local project context.
 
 The local layer lives in:
 
@@ -111,6 +115,29 @@ local/config/
 
 Public documentation and templates should explain the options, but real API keys or private model choices should not be committed.
 
+## Privacy Layer
+
+The privacy layer is optional.
+
+It helps users reduce the amount of sensitive information sent to cloud model providers.
+
+Supported modes include:
+
+- Off
+- Basic redaction
+- Mask and rehydrate
+- Local-only
+
+Privacy configuration should live in:
+
+```text
+local/config/privacy-config.md
+```
+
+The privacy layer should be visible to the user and easy to change.
+
+It should be treated as a risk reduction tool, not as a full security guarantee.
+
 ## Tool Layer
 
 Tools give the agent the ability to act.
@@ -123,6 +150,7 @@ Possible tools may include:
 - Running approved scripts
 - Processing public datasets
 - Generating reports or visuals
+- Masking or redacting prompts before cloud model use
 
 Tool access should be added gradually.
 
@@ -139,6 +167,7 @@ Examples include:
 - Decision log
 - Idea inbox
 - Model configuration
+- Privacy configuration
 
 The purpose of memory is not to save everything.
 
@@ -180,4 +209,4 @@ Capture thought
 
 Aodh Lab should remain understandable.
 
-A user should be able to inspect the folder structure, read the system files, understand what the agent is allowed to do, and change the behaviour deliberately.
+A user should be able to inspect the folder structure, read the system files, understand what the agent is allowed to do, understand which privacy mode is active, and change the behaviour deliberately.

@@ -4,7 +4,7 @@ This guide explains how to set up Aodh Lab as a local personal AI systems lab.
 
 Aodh Lab is designed to be cloneable.
 
-The public repository contains system files, documentation, templates, and fictional examples.
+The public repository contains system files, documentation, templates, fictional examples, and safe starter tools.
 
 Each user creates their own private local instance inside the local folder.
 
@@ -42,7 +42,7 @@ mkdir -p local/projects
 
 The local folder is ignored by Git.
 
-This is where private user memory, model choices, and personal notes should live.
+This is where private user memory, model choices, privacy choices, and personal notes should live.
 
 ## Copy Templates into Local Files
 
@@ -54,6 +54,7 @@ cp templates/active-projects.template.md local/memory/active-projects.md
 cp templates/decision-log.template.md local/memory/decision-log.md
 cp templates/idea-inbox.template.md local/memory/idea-inbox.md
 cp templates/model-config.template.md local/config/model-config.md
+cp templates/privacy-config.template.md local/config/privacy-config.md
 ```
 
 Then edit the local files with your own information.
@@ -79,6 +80,32 @@ docs/model-options.md
 
 for more guidance.
 
+## Configure Privacy Mode
+
+Aodh Lab includes an optional privacy layer.
+
+Choose one of the following modes in:
+
+```text
+local/config/privacy-config.md
+```
+
+Supported modes:
+
+- Off
+- Basic redaction
+- Mask and rehydrate
+- Local-only
+
+See:
+
+```text
+docs/privacy-layer.md
+system/privacy-rules.md
+```
+
+for more guidance.
+
 ## Environment Variables
 
 Copy the example environment file if needed:
@@ -91,6 +118,26 @@ Then fill in only the values you actually use.
 
 Do not commit real API keys.
 
+## Test the Starter Privacy Tool
+
+Aodh Lab includes a small dependency-free JavaScript privacy utility.
+
+Example:
+
+```bash
+node tools/privacy/pii-masker.js mask "Email Alex at alex@example.com or call +353 87 123 4567."
+```
+
+This should return a masked prompt and a local placeholder map.
+
+Example redaction:
+
+```bash
+node tools/privacy/pii-masker.js redact "Email Alex at alex@example.com or call +353 87 123 4567."
+```
+
+This should return a version with generic labels such as `[EMAIL]` and `[PHONE]`.
+
 ## First Local Use
 
 The first version of Aodh Lab is the Idea-to-Action Agent.
@@ -100,6 +147,7 @@ Before connecting a runtime or model, read:
 ```text
 system/agent-charter.template.md
 system/memory-rules.md
+system/privacy-rules.md
 system/safety-rules.md
 system/tool-permissions.md
 ```
