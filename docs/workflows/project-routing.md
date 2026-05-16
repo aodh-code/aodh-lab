@@ -303,3 +303,14 @@ This does not belong here.
 This is worth doing next.
 This should not become another burden.
 ```
+## Related workflow
+
+Save decisions are defined in:
+
+```text
+docs/workflows/save-decision.md
+```
+
+The Project Routing workflow decides where an idea belongs.
+
+The Save Decision workflow decides whether the routed idea should be saved.

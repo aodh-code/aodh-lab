@@ -203,7 +203,7 @@ Example:
 [PROJECT_1]
 ```
 
-## Related workflow
+## Related workflows
 
 Project routing is defined in:
 
@@ -211,6 +211,14 @@ Project routing is defined in:
 docs/workflows/project-routing.md
 ```
 
+Save decisions are defined in:
+
+```text
+docs/workflows/save-decision.md
+```
+
 The Idea-to-Action workflow extracts and clarifies the idea.
 
 The Project Routing workflow checks the Project Index and produces the routing decision.
+
+The Save Decision workflow decides whether anything should be saved, where it should be saved, and whether user confirmation is required.
