@@ -201,3 +201,16 @@ Example:
 [COMPANY_1]
 [LOCATION_1]
 [PROJECT_1]
+```
+
+## Related workflow
+
+Project routing is defined in:
+
+```text
+docs/workflows/project-routing.md
+```
+
+The Idea-to-Action workflow extracts and clarifies the idea.
+
+The Project Routing workflow checks the Project Index and produces the routing decision.
